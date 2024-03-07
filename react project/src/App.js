@@ -38,7 +38,7 @@ function App() {
           <div className="image-row-container">
             <ImageRow setMainImage={setMainImage} />
           </div>
-        </div>
+        </div>  
 
   );
 }
