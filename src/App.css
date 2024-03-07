@@ -1,0 +1,30 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Vertically center the content */
+  height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  margin-bottom: 20px; /* Adjust spacing between title and gallery */
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff; /* Add background color if needed */
+  text-align: center;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  margin-top: 70px; /* Adjust margin to avoid overlapping with the title */
+}
+
+.main-image-container {
+  margin-bottom: 20px; /* Adjust margin between main image and image row */
+}
+
