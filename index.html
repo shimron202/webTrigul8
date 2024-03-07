@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React App in HTML</title>
+  <!-- Add links to React and ReactDOM scripts -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Optional: Add Babel standalone for JSX transformation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Add your styles -->
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 70px;
+    }
+
+    .main-image-container {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<div><h1>shimron's dynamic gallery react</h1></div>
+<div id="root"></div>
+
+<script type="text/babel">
+  function ImageRow({ setMainImage }) {
+    let urls = [];
+    for (let i = 0; i < 10; i++) {
+      urls.push(`https://picsum.photos/200/300?random=${i * 10 + i}`);
+    }
+
+    const handleImageHover = (url) => {
+      setMainImage(url);
+    };
+
+    const gallery = urls.map((url, index) => (
+      React.createElement('img', {
+        key: index,
+        src: url,
+        alt: '',
+        style: { margin: '5px', width: '100px', height: '100px' },
+        onMouseEnter: () => handleImageHover(url)
+      })
+    ));
+
+    return React.createElement('div', null, gallery);
+  }
+
+  function App() {
+    const [mainImage, setMainImage] = React.useState('');
+
+    return React.createElement('div', { className: 'app-container' },
+      React.createElement('div', { className: 'main-image-container' },
+        mainImage && React.createElement('img', { alt: '', src: mainImage, style: { width: '200px', height: '200px' } })
+      ),
+      React.createElement(ImageRow, { setMainImage: setMainImage })
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    React.createElement(React.StrictMode, null,
+      React.createElement(App)
+    )
+  );
+</script>
+
+</body>
+</html>
